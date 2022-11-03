@@ -2,21 +2,28 @@ package org.springframework.samples.petclinic.feeding;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 public class FeedingService {
+    private FeedingRepository feedingRepository;
+
+    @Transactional(readOnly = true)
     public List<Feeding> getAll(){
-        return null;
+        return this.feedingRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public List<FeedingType> getAllFeedingTypes(){
-        return null;
+        return this.feedingRepository.findAllFeedingTypes();
     }
 
     public FeedingType getFeedingType(String typeName) {
-        return null;
+        return this.feedingRepository.getFeedingType(typeName);
     }
 
-    public Feeding save(Feeding p) throws UnfeasibleFeedingException {
-        return null;       
+    @Transactional(readOnly = true)
+    public Feeding save(Feeding p){
+        return this.feedingRepository.save(p);
     }
 
     
